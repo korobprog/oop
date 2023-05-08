@@ -1,19 +1,25 @@
+import Swordsman from "./class/swordsman";
+import Bowman from "./class/bowman";
+import Megician from "./class/magician";
+import Daemon from "./class/daemon";
+import Zombie from "./class/zombie";
+import Undead from "./class/undead";
+
 export class Character {
   constructor(name, type) {
+    const list = [
+      "Bowman",
+      "Swordsman",
+      "Magician",
+      "Daemon",
+      "Undead",
+      "Zombie",
+    ].includes(type);
     if (name.length < 2 || name.length > 10) {
       throw new Error("Имя должно содержать от 2 до 10 символов");
     }
 
-    if (
-      ![
-        "Bowman",
-        "Swordsman",
-        "Magician",
-        "Daemon",
-        "Undead",
-        "Zombie",
-      ].includes(type)
-    ) {
+    if (!list) {
       throw new Error("Недопустимый тип персонажа");
     }
 
@@ -24,28 +30,28 @@ export class Character {
 
     switch (type) {
       case "Bowman":
-        this.attack = 25;
-        this.defence = 25;
+        Bowman.attack;
+        Bowman.defence;
         break;
       case "Swordsman":
-        this.attack = 40;
-        this.defence = 10;
+        Swordsman.attack;
+        Swordsman.defence;
         break;
       case "Magician":
-        this.attack = 10;
-        this.defence = 40;
+        Megician.attack;
+        Megician.defence;
         break;
       case "Undead":
-        this.attack = 25;
-        this.defence = 25;
+        Undead.attack;
+        Undead.defence;
         break;
       case "Zombie":
-        this.attack = 40;
-        this.defence = 10;
+        Zombie.attack;
+        Zombie.defence;
         break;
       case "Daemon":
-        this.attack = 10;
-        this.defence = 40;
+        Daemon.attack;
+        Daemon.defence;
         break;
       default:
         throw new Error("Недопустимый тип персонажа");
@@ -76,41 +82,5 @@ export class Character {
     if (this.health < 0) {
       this.health = 0;
     }
-  }
-}
-
-export class Bowman extends Character {
-  constructor(name) {
-    super(name, "Bowman");
-  }
-}
-
-export class Swordsman extends Character {
-  constructor(name) {
-    super(name, "Swordsman");
-  }
-}
-
-export class Magician extends Character {
-  constructor(name) {
-    super(name, "Magician");
-  }
-}
-
-export class Undead extends Character {
-  constructor(name) {
-    super(name, "Undead");
-  }
-}
-
-export class Zombie extends Character {
-  constructor(name) {
-    super(name, "Zombie");
-  }
-}
-
-export class Daemon extends Character {
-  constructor(name) {
-    super(name, "Daemon");
   }
 }

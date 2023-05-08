@@ -1,12 +1,10 @@
-import {
-  Undead,
-  Zombie,
-  Daemon,
-  Magician,
-  Swordsman,
-  Bowman,
-  Character,
-} from "../app";
+import { Character } from "../app";
+import { Undead } from "../class/swordsman";
+import { Zombie } from "../class/zombie";
+import { Daemon } from "../class/daemon";
+import { Magician } from "../class/magician";
+import { Swordsman } from "../class/swordsman";
+import { Bowman } from "../class/bowman";
 
 let character = Character;
 
