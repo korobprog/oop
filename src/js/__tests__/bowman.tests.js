@@ -1,4 +1,4 @@
-import Character from "../app";
+import Character from "../character";
 import Bowman from "../class/bowman";
 
 test("create new Bowerman class", () => {
