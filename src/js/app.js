@@ -1,12 +1,13 @@
-import Swordsman from "./class/swordsman";
-import Bowman from "./class/bowman";
-import Megician from "./class/magician";
-import Daemon from "./class/daemon";
-import Zombie from "./class/zombie";
-import Undead from "./class/undead";
-
-export class Character {
-  constructor(name, type) {
+export default class Character {
+  constructor(type, name, level, health, attack, defence) {
+    this.type = this.calcLength(type);
+    this.name = this.calcLength(name);
+    this.level = this.levelUp(level);
+    this.health = this.levelUp(health);
+    this.attack = this.levelUp(attack);
+    this.defence = this.levelUp(defence);
+  }
+  calcLength(type, name) {
     const list = [
       "Bowman",
       "Swordsman",
@@ -14,60 +15,24 @@ export class Character {
       "Daemon",
       "Undead",
       "Zombie",
-    ].includes(type);
+    ];
+    if (!list.includes(type)) {
+      throw new Error("Недопустимый тип персонажа");
+    }
     if (name.length < 2 || name.length > 10) {
       throw new Error("Имя должно содержать от 2 до 10 символов");
     }
-
-    if (!list) {
-      throw new Error("Недопустимый тип персонажа");
-    }
-
-    this.name = name;
-    this.type = type;
-    this.health = 100;
-    this.level = 1;
-
-    switch (type) {
-      case "Bowman":
-        Bowman.attack;
-        Bowman.defence;
-        break;
-      case "Swordsman":
-        Swordsman.attack;
-        Swordsman.defence;
-        break;
-      case "Magician":
-        Megician.attack;
-        Megician.defence;
-        break;
-      case "Undead":
-        Undead.attack;
-        Undead.defence;
-        break;
-      case "Zombie":
-        Zombie.attack;
-        Zombie.defence;
-        break;
-      case "Daemon":
-        Daemon.attack;
-        Daemon.defence;
-        break;
-      default:
-        throw new Error("Недопустимый тип персонажа");
-    }
+    return list;
   }
 
   levelUp() {
     if (this.health <= 0) {
       throw new Error("Персонаж уже умер!");
     }
-
-    this.level++;
-    this.attack += this.attack * 0.2;
-    this.defence += this.defence * 0.2;
-
     if (this.health < 100) {
+      this.level += 1;
+      this.attack *= 1.2;
+      this.defence *= 1.2;
       this.health = 100;
     }
   }
